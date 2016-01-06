@@ -1,0 +1,10 @@
+---
+# Please change this according to your pem key file path
+keypair: ~/.ssh/home-mbp.pem
+
+# This is a basic Ubuntu 14.04.02 64 bits
+ami_id: ami-6904aa1a
+# These decribe the instance we will build. 
+instance_type: t2.micro
+security_group: moz-flask-group
+region: eu-west-1
