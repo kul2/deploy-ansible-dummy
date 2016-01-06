@@ -1,0 +1,4 @@
+---
+# tasks file for flask-dummy
+- include: install.yml
+- include: configure.yml

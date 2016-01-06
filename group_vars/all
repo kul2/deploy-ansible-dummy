@@ -1,6 +1,8 @@
 ---
 # Please change this according to your pem key file path
-keypair: ~/.ssh/home-mbp.pem
+key_path: ~/.ssh/
+# Please change this according to the keypair name you created in AWS IAM
+keypair: home-mbp
 
 # This is a basic Ubuntu 14.04.02 64 bits
 ami_id: ami-6904aa1a

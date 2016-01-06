@@ -1,0 +1,15 @@
+---
+# vars file for flask-dummy
+# This is the flask repository
+repo: https://github.com/simongareste/flask-dummy.git
+# The branch to check on the repository
+branch: master
+# The webapp location on the instance
+source_path: /var/www/flask-dummy
+app_name: flask-dummy
+wsgi_callable: app
+
+# The daemon file
+daemon_file: webapp
+# The virtualhost file
+nginx_virtualhost: flask-dummy.conf

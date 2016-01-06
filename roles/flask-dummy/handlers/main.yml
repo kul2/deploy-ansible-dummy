@@ -1,0 +1,36 @@
+---
+# handlers file for flask-dummy
+- name: restart webapp server
+  debug: msg="checking config first"
+  changed_when: True
+  notify:
+    - check webapp configuration
+    - restart webapp - after config check
+
+- name: reload webapp
+  debug: msg="checking config first"
+  changed_when: True
+  notify:
+    - check webapp configuration
+    - reload webapp - after config check
+
+- name: check webapp configuration
+  shell: "ps fax | grep hello.py | grep -v grep"
+  register: result
+  changed_when: "result.rc != 0"
+  always_run: yes
+
+- name: restart webapp - after config check
+  service: name=webapp state=restarted
+
+- name: reload webapp - after config check
+  service: name=webapp state=reloaded
+
+- name: restart flask-dummy
+  action: supervisorctl name=${app_name} state=restarted
+
+- name: restart app
+  action: supervisorctl name=${app_name} state=restarted
+
+- name: restart nginx
+  action: service name=nginx state=restarted

@@ -1,0 +1,34 @@
+---
+# Install requirements for the dummy flask webapp
+- name: install git
+  apt: name=git state=latest update_cache=yes
+  tags: [install,git]
+
+- name: install python2.7
+  apt: name=python2.7 state=latest update_cache=yes
+  tags: [install,python]
+
+- name: install pythondev
+  apt: name=python-dev state=latest update_cache=yes
+  tags: [install,pythondev]
+
+- name: install pip
+  apt: name=python-pip state=latest update_cache=yes
+  tags: [install,pip]
+
+- name: install flask 0.10
+  pip: name=flask version=0.10
+  tags: [install,pip,flask]
+
+- name: install virtualenv
+  pip: name=virtualenv
+  tags: [install,pip,virtualenv]
+
+- name: install supervisor
+  pip: name=supervisor
+  tags: [install,pip,supervisor]
+
+- name: install wsgi
+  pip: name=uwsgi
+  tags: [install,pip,uwsgi]
+
