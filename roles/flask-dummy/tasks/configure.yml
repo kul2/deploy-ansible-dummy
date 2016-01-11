@@ -23,14 +23,14 @@
   action: template src=supervisord.sh dest=/etc/init.d/supervisord mode=0755
   tags: [configuration,supervisord]
 
-- name: start supervisord service and have it run during system startup
-  action: service name=supervisord state=started enabled=yes
-  tags: [configuration,supervisord]
-
 - name: create supervisor program config
   action: template src=supervisor.ini dest="/etc/supervisor/{{ app_name }}.ini"
   notify:
     - restart flask-dummy
+
+- name: start supervisord service and have it run during system startup
+  action: service name=supervisord state=started enabled=yes
+  tags: [configuration,supervisord]
 
 - name: start app
   action: supervisorctl name=${app_name} state=started
@@ -58,3 +58,6 @@
   notify:
   - reload nginx
   tags: [configuration,nginx,flask-dummy]
+
+- name: Restart nginx
+  service: name=nginx state=restarted
